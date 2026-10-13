@@ -12,30 +12,31 @@
 
 <br>
 
-[🇰🇷 한국어](./ko.md) · [🇺🇸 English](../../README.md) · [🇨🇳 简体中文](./zh-CN.md) · [🇯🇵 日本語](./ja.md) · [🇪🇸 Español](./es.md) · [🇫🇷 Français](./fr.md) · [🇷🇺 Русский](./ru.md) · [🇧🇷 Português](./pt-BR.md) · [🇸🇦 العربية](./ar.md) · **🇮🇳 हिन्दी**
+| 🌐 Language Selector | 언어 선택 | 语言选择 | 言語を選択 | Seleccionar Idioma |
+| :---: | :---: | :---: | :---: | :---: |
+| [🇺🇸 English](../../README.md) | [🇰🇷 한국어](./ko.md) | [🇨🇳 简体中文](./zh-CN.md) | [🇯🇵 日本語](./ja.md) | [🇪🇸 Español](./es.md) |
+| [🇫🇷 Français](./fr.md) | [🇷🇺 Русский](./ru.md) | [🇧🇷 Português](./pt-BR.md) | [🇸🇦 العربية](./ar.md) | [🇮🇳 हिन्दी](#) |
 
 </div>
 
 ---
 
-## 📌 हिन्दी 개요 (k-packet-radar Overview)
+## 📌 परियोजना का अवलोकन
 
-`k-packet-radar`는 스타크래프트 브루드워(StarCraft Brood War) 네트워크 트래픽을 위한 **비침습적 전송 계층(UDP 6112) 패킷 분석 및 실시간 텔레메트리 레이더 HUD 엔진**입니다.
+`k-packet-radar` स्टारक्राफ्ट ब्रूड वॉर (StarCraft Brood War) नेटवर्क ट्रैफ़िक के लिए डिज़ाइन किया गया एक उच्च-प्रदर्शन, **पूरी तरह से गैर-आक्रामक ट्रांसपोर्ट लेयर (UDP पोर्ट 6112) पैकेट विश्लेषण और टैक्टिकल टेलीमेट्री HUD इंजन** है। यह बिना मेमोरी संशोधन के रॉ सॉकेट्स के माध्यम से काम करता है।
 
-게임 프로세스 메모리 주입, 후킹, 디버거 연결 없이 원시 소켓 수준에서 독립 실행되며, 안티치트 감시에 100% 안전하게 동작합니다.
+### ⚡ मुख्य इंजीनियरिंग क्षमताएं
 
-### ⚡ 핵심 엔지니어링 특징 (Core Highlights)
-
-- **Zero Process Mutation**: 프로세스 메모리를 변조하지 않는 독립 실행형(Out-of-Process) 아키텍처
-- **8.44 Mpps Zero-Copy Throughput**: 패킷 1개당 118.4ns의 결정론적 초고속 제로카피 파싱
-- **Direct2D 60FPS HUD & 256x256 Tactical Radar**: 2차원 게임 좌표를 256x256 전술 매트릭스로 정규화
-- **실시간 지연시간(RTT) 및 지터 추적**: 플레이어별 정밀 네트워크 변동성 실측
-- **드랍핵 & 이상 징후 방어 센티널**: 시퀀스 단절, 패킷 플러딩 공격 실시간 탐지
-- **자체 벡터 SVG 캡처 내보내기**: CLI 명령어(`cargo run -- export-svg`)를 통한 실사 벡터 스냅샷
+- **शून्य प्रक्रिया उत्परिवर्तन (एंटी-चीट सुरक्षित)**: गेम प्रक्रिया के बाहर 100% सुरक्षित रूप से चलता है।
+- **माइक्रोसेकंड टर्न पार्सिंग (8.44 Mpps)**: प्रति सेकंड 84 लाख से अधिक पैकेट प्रोसेस करने में सक्षम (प्रति पैकेट 118.4 ns)।
+- **256x256 टैक्टिकल रडार मैट्रिक्स**: Direct2D 60 FPS ओवरले के लिए 2D मैप निर्देशांकों को रडार ग्रिड में सामान्यीकृत करता है।
+- **रीयल-टाइम लेटेंसी और जिटर ट्रैकिंग**: सटीक राउंड-ट्रिप समय (RTT), जिटर, पैकेट हानि और अनुमानित APM की रीयल-टाइम माप।
+- **ड्रॉपहैक और विसंगति सुरक्षा प्रहरी**: दुर्भावनापूर्ण पैकेट फ्लड और डीसिंक हमलों का तत्काल पता लगाना।
+- **मूल वेक्टर SVG फ़्रेम निर्यातक**: रडार मैट्रिक्स को सीधे स्केलेबल वेक्टर SVG फ़ाइलों में कैप्चर करने की क्षमता।
 
 ---
 
-## 🏛️ 아키텍처 다이어그램 (Architecture Pipeline)
+## 🏛️ आर्किटेक्चर पाइपलाइन
 
 <p align="center">
   <img src="../assets/locales/hi/architecture.svg" alt="स्टारक्राफ्ट UDP 6112 गैर-आक्रामक पैकेट टेलीमेट्री आर्किटेक्चर" width="100%" />
@@ -43,39 +44,39 @@
 
 ---
 
-## 🎮 실시간 전술 레이더 HUD & 터미널 캡처 (Visual Live Captures)
+## 🎮 लाइव विज़ुअल कैप्चर और सामरिक HUD
 
-### In-Game Tactical Radar & Live Telemetry HUD
+### गेम में Direct2D 60 FPS सामरिक रडार और टेलीमेट्री डैशबोर्ड
 <p align="center">
-  <img src="../assets/locales/hi/radar_tactical_hud.svg" alt="Tactical Radar HUD" width="100%" />
+  <img src="../assets/locales/hi/radar_tactical_hud.svg" alt="गेम में Direct2D 60 FPS सामरिक रडार और टेलीमेट्री डैशबोर्ड" width="100%" />
 </p>
 
-### CLI Terminal Execution & Benchmark Capture
+### CLI टर्मिनल निष्पादन और 8.44 Mpps थ्रूपुट बेंचमार्क
 <p align="center">
-  <img src="../assets/locales/hi/terminal_capture.svg" alt="Terminal Execution Capture" width="100%" />
+  <img src="../assets/locales/hi/terminal_capture.svg" alt="CLI टर्मिनल निष्पादन और 8.44 Mpps थ्रूपुट बेंचमार्क" width="100%" />
 </p>
 
 ---
 
-## 🚀 빠른 시작 (Quick Start)
+## 🚀 त्वरित शुरुआत
 
 ```bash
-# 1. 가상 패킷 파이프라인 및 레이더 텔레메트리 데모 실행
+# 1. सिंथेटिक पैकेट पाइपलाइन और रडार टेलीमेट्री डेमो चलाएं
 cargo run -- demo
 
-# 2. 10만 패킷 처리율 벤치마크 실행 (8.44 Mpps 검증)
+# 2. 100,000 पैकेट थ्रूपुट बेंचमार्क चलाएं (8.44 Mpps सत्यापन)
 cargo run -- benchmark
 
-# 3. 실시간 전술 레이더 상태를 벡터 SVG 파일로 캡처
+# 3. रीयल-टाइम रडार फ़्रेम को सीधे वेक्टर SVG फ़ाइल में निर्यात करें
 cargo run -- export-svg docs/assets/radar_export.svg
 
-# 4. 로컬 인터페이스 실시간 UDP 6112 캡처 시작
+# 4. स्थानीय इंटरफ़ेस पर वास्तविक UDP 6112 स्निफ़िंग प्रारंभ करें
 cargo run -- sniff 6112
 ```
 
 ---
 
-## 🧪 테스트 스위트 검증 (Verification)
+## 🧪 परीक्षण सूट सत्यापन
 
 ```bash
 cargo test --all-targets
@@ -83,15 +84,13 @@ cargo test --all-targets
 
 ---
 
-## ⚖️ 법적 고지 및 교육용 연구 목적 성명 (Legal & Educational Disclaimer)
+## ⚖️ कानूनी अस्वीकरण और शैक्षिक अनुसंधान उद्देश्य
 
-> **[국문]** 본 프로젝트(`k-packet-radar`)는 순수하게 **전송 계층(UDP 6112) 네트워크 프로토콜 분석 실습 및 저지연 시스템 소프트웨어 엔지니어링 학습 연구 목적**으로 작성된 비영리 오픈소스입니다.
-> - **즉각 삭제 및 저장소 정리 공약 (Takedown Commitment)**: 게임 제작사(Blizzard Entertainment) 및 관계사로부터 약관(EULA) 또는 정책적 문제 제기가 있을 경우, **권리자의 요청 접수 즉시 지체 없이 본 저장소를 즉각 삭제 또는 정리(Archived/Removed)할 것을 명확히 공약합니다.**
-> - 상세 법적 성명서: [DISCLAIMER.md](../../DISCLAIMER.md) 참조.
-
-> **[English]** This repository is developed strictly for **educational research, low-latency software engineering, and network transport protocol analysis**.
-> - **Immediate Takedown Commitment**: If any legitimate policy, trademark, or terms-of-service concerns are raised by Blizzard Entertainment or relevant authorities, the author will **promptly archive or remove this repository immediately upon notice without delay.**
-> - Full Legal Notice: Refer to [DISCLAIMER.md](../../DISCLAIMER.md).
+> **यह परियोजना पूरी तरह से **शैक्षिक अनुसंधान, नेटवर्क ट्रांसपोर्ट प्रोटोकॉल विश्लेषण और कम-विलंबता सॉफ्टवेयर इंजीनियरिंग अध्ययन** के लिए गैर-व्यावसायिक रूप से विकसित की गई है।**
+> 
+> **तत्काल हटाने और रिपॉजिटरी बंद करने की प्रतिबद्धता (Takedown Commitment)**: लेखक सभी बौद्धिक संपदा अधिकारों और नीतियों का सम्मान करता है। यदि बर्फ़ीला तूफ़ान मनोरंजन (Blizzard Entertainment) या संबंधित प्राधिकरण सेवा की शर्तों (EULA) के संबंध में कोई उचित आपत्ति जताते हैं, **तो लेखक सूचना मिलते ही बिना किसी देरी के इस रिपॉजिटरी को तुरंत हटाने या संग्रहीत करने की औपचारिक प्रतिज्ञा करता है।**
+> 
+> 📖 [DISCLAIMER.md](../../DISCLAIMER.md)
 
 ---
 <sub>Copyright © 2026 Ken Park (kLauncher1). Built with pure Rust & Zero-Dependency Native Architecture.</sub>

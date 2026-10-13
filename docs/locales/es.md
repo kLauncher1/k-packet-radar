@@ -12,30 +12,31 @@
 
 <br>
 
-[🇰🇷 한국어](./ko.md) · [🇺🇸 English](../../README.md) · [🇨🇳 简体中文](./zh-CN.md) · [🇯🇵 日本語](./ja.md) · **🇪🇸 Español** · [🇫🇷 Français](./fr.md) · [🇷🇺 Русский](./ru.md) · [🇧🇷 Português](./pt-BR.md) · [🇸🇦 العربية](./ar.md) · [🇮🇳 हिन्दी](./hi.md)
+| 🌐 Language Selector | 언어 선택 | 语言选择 | 言語を選択 | Seleccionar Idioma |
+| :---: | :---: | :---: | :---: | :---: |
+| [🇺🇸 English](../../README.md) | [🇰🇷 한국어](./ko.md) | [🇨🇳 简体中文](./zh-CN.md) | [🇯🇵 日本語](./ja.md) | [🇪🇸 Español](#) |
+| [🇫🇷 Français](./fr.md) | [🇷🇺 Русский](./ru.md) | [🇧🇷 Português](./pt-BR.md) | [🇸🇦 العربية](./ar.md) | [🇮🇳 हिन्दी](./hi.md) |
 
 </div>
 
 ---
 
-## 📌 Español 개요 (k-packet-radar Overview)
+## 📌 Descripción General
 
-`k-packet-radar`는 스타크래프트 브루드워(StarCraft Brood War) 네트워크 트래픽을 위한 **비침습적 전송 계층(UDP 6112) 패킷 분석 및 실시간 텔레메트리 레이더 HUD 엔진**입니다.
+`k-packet-radar` es un motor de análisis de paquetes de alto rendimiento y canal de telemetría táctica **completamente no invasivo en la capa de transporte (UDP puerto 6112)** diseñado para el tráfico de red de StarCraft Brood War. Funciona fuera de proceso mediante sockets raw sin inyectar DLLs ni modificar la memoria del juego.
 
-게임 프로세스 메모리 주입, 후킹, 디버거 연결 없이 원시 소켓 수준에서 독립 실행되며, 안티치트 감시에 100% 안전하게 동작합니다.
+### ⚡ Capacidades Técnicas Clave
 
-### ⚡ 핵심 엔지니어링 특징 (Core Highlights)
-
-- **Zero Process Mutation**: 프로세스 메모리를 변조하지 않는 독립 실행형(Out-of-Process) 아키텍처
-- **8.44 Mpps Zero-Copy Throughput**: 패킷 1개당 118.4ns의 결정론적 초고속 제로카피 파싱
-- **Direct2D 60FPS HUD & 256x256 Tactical Radar**: 2차원 게임 좌표를 256x256 전술 매트릭스로 정규화
-- **실시간 지연시간(RTT) 및 지터 추적**: 플레이어별 정밀 네트워크 변동성 실측
-- **드랍핵 & 이상 징후 방어 센티널**: 시퀀스 단절, 패킷 플러딩 공격 실시간 탐지
-- **자체 벡터 SVG 캡처 내보내기**: CLI 명령어(`cargo run -- export-svg`)를 통한 실사 벡터 스냅샷
+- **Mutación Cero de Procesos (Anti-Cheat Safe)**: Funciona 100% fuera del proceso del juego sin activar guardianes antitrampas.
+- **Análisis de Microsegundos (8.44 Mpps)**: Deserializador de paquetes zero-copy capaz de procesar más de 8 millones de paquetes por segundo (118.4 ns por paquete).
+- **Matriz de Radar Táctico 256x256**: Normaliza coordenadas 2D en una cuadrícula táctica discreta para superposiciones Direct2D a 60 FPS.
+- **Seguimiento de Latencia y Jitter**: Mide tiempo de ida y vuelta (RTT), fluctuación (jitter), pérdida de paquetes y APM estimado en tiempo real.
+- **Centinela contra Drophack y Anomalías**: Detecta inundaciones de paquetes maliciosas y discontinuidades de secuencia.
+- **Exportador Nativo de Cuadros SVG**: Captura estados del radar directamente en archivos vectoriales SVG escalables.
 
 ---
 
-## 🏛️ 아키텍처 다이어그램 (Architecture Pipeline)
+## 🏛️ Canal de Arquitectura
 
 <p align="center">
   <img src="../assets/locales/es/architecture.svg" alt="Arquitectura de telemetría de paquetes UDP 6112 para StarCraft" width="100%" />
@@ -43,39 +44,39 @@
 
 ---
 
-## 🎮 실시간 전술 레이더 HUD & 터미널 캡처 (Visual Live Captures)
+## 🎮 Capturas en Vivo y HUD Táctico
 
-### In-Game Tactical Radar & Live Telemetry HUD
+### HUD de Radar Táctico y Telemetría en Juego Direct2D a 60 FPS
 <p align="center">
-  <img src="../assets/locales/es/radar_tactical_hud.svg" alt="Tactical Radar HUD" width="100%" />
+  <img src="../assets/locales/es/radar_tactical_hud.svg" alt="HUD de Radar Táctico y Telemetría en Juego Direct2D a 60 FPS" width="100%" />
 </p>
 
-### CLI Terminal Execution & Benchmark Capture
+### Ejecución en Terminal CLI y Benchmark a 8.44 Mpps
 <p align="center">
-  <img src="../assets/locales/es/terminal_capture.svg" alt="Terminal Execution Capture" width="100%" />
+  <img src="../assets/locales/es/terminal_capture.svg" alt="Ejecución en Terminal CLI y Benchmark a 8.44 Mpps" width="100%" />
 </p>
 
 ---
 
-## 🚀 빠른 시작 (Quick Start)
+## 🚀 Inicio Rápido
 
 ```bash
-# 1. 가상 패킷 파이프라인 및 레이더 텔레메트리 데모 실행
+# 1. Ejecutar demostración de telemetría y radar sintético
 cargo run -- demo
 
-# 2. 10만 패킷 처리율 벤치마크 실행 (8.44 Mpps 검증)
+# 2. Ejecutar benchmark de rendimiento de 100,000 paquetes (8.44 Mpps)
 cargo run -- benchmark
 
-# 3. 실시간 전술 레이더 상태를 벡터 SVG 파일로 캡처
+# 3. Exportar un fotograma del radar en vivo directamente a SVG vectorial
 cargo run -- export-svg docs/assets/radar_export.svg
 
-# 4. 로컬 인터페이스 실시간 UDP 6112 캡처 시작
+# 4. Iniciar captura UDP 6112 en la interfaz de red local
 cargo run -- sniff 6112
 ```
 
 ---
 
-## 🧪 테스트 스위트 검증 (Verification)
+## 🧪 Verificación del Banco de Pruebas
 
 ```bash
 cargo test --all-targets
@@ -83,15 +84,13 @@ cargo test --all-targets
 
 ---
 
-## ⚖️ 법적 고지 및 교육용 연구 목적 성명 (Legal & Educational Disclaimer)
+## ⚖️ Descargo de Responsabilidad Legal y Propósito Educativo
 
-> **[국문]** 본 프로젝트(`k-packet-radar`)는 순수하게 **전송 계층(UDP 6112) 네트워크 프로토콜 분석 실습 및 저지연 시스템 소프트웨어 엔지니어링 학습 연구 목적**으로 작성된 비영리 오픈소스입니다.
-> - **즉각 삭제 및 저장소 정리 공약 (Takedown Commitment)**: 게임 제작사(Blizzard Entertainment) 및 관계사로부터 약관(EULA) 또는 정책적 문제 제기가 있을 경우, **권리자의 요청 접수 즉시 지체 없이 본 저장소를 즉각 삭제 또는 정리(Archived/Removed)할 것을 명확히 공약합니다.**
-> - 상세 법적 성명서: [DISCLAIMER.md](../../DISCLAIMER.md) 참조.
-
-> **[English]** This repository is developed strictly for **educational research, low-latency software engineering, and network transport protocol analysis**.
-> - **Immediate Takedown Commitment**: If any legitimate policy, trademark, or terms-of-service concerns are raised by Blizzard Entertainment or relevant authorities, the author will **promptly archive or remove this repository immediately upon notice without delay.**
-> - Full Legal Notice: Refer to [DISCLAIMER.md](../../DISCLAIMER.md).
+> **Este proyecto ha sido desarrollado estrictamente para **investigación educativa, análisis de protocolos de red y exploración de ingeniería de software de baja latencia** sin fines comerciales.**
+> 
+> **Compromiso de Retirada Inmediata (Takedown Commitment)**: El autor respeta todos los derechos de propiedad intelectual y normativas de servicio. Si Blizzard Entertainment o las partes pertinentes presentan alguna inquietud justificada respecto a los términos de servicio (EULA), **el autor se compromete solemnemente a archivar o eliminar este repositorio de inmediato sin demora alguna.**
+> 
+> 📖 [DISCLAIMER.md](../../DISCLAIMER.md)
 
 ---
 <sub>Copyright © 2026 Ken Park (kLauncher1). Built with pure Rust & Zero-Dependency Native Architecture.</sub>

@@ -12,30 +12,31 @@
 
 <br>
 
-[🇰🇷 한국어](./docs/locales/ko.md) · **🇺🇸 English** · [🇨🇳 简体中文](./docs/locales/zh-CN.md) · [🇯🇵 日本語](./docs/locales/ja.md) · [🇪🇸 Español](./docs/locales/es.md) · [🇫🇷 Français](./docs/locales/fr.md) · [🇷🇺 Русский](./docs/locales/ru.md) · [🇧🇷 Português](./docs/locales/pt-BR.md) · [🇸🇦 العربية](./docs/locales/ar.md) · [🇮🇳 हिन्दी](./docs/locales/hi.md)
+| 🌐 Language Selector | 언어 선택 | 语言选择 | 言語を選択 | Seleccionar Idioma |
+| :---: | :---: | :---: | :---: | :---: |
+| [🇺🇸 English](#) | [🇰🇷 한국어](./docs/locales/ko.md) | [🇨🇳 简体中文](./docs/locales/zh-CN.md) | [🇯🇵 日本語](./docs/locales/ja.md) | [🇪🇸 Español](./docs/locales/es.md) |
+| [🇫🇷 Français](./docs/locales/fr.md) | [🇷🇺 Русский](./docs/locales/ru.md) | [🇧🇷 Português](./docs/locales/pt-BR.md) | [🇸🇦 العربية](./docs/locales/ar.md) | [🇮🇳 हिन्दी](./docs/locales/hi.md) |
 
 </div>
 
 ---
 
-## 📌 English 개요 (k-packet-radar Overview)
+## 📌 Overview
 
-`k-packet-radar`는 스타크래프트 브루드워(StarCraft Brood War) 네트워크 트래픽을 위한 **비침습적 전송 계층(UDP 6112) 패킷 분석 및 실시간 텔레메트리 레이더 HUD 엔진**입니다.
+`k-packet-radar` is a high-performance, non-invasive packet analysis engine and tactical telemetry pipeline designed for StarCraft Brood War network traffic. Operating strictly at the network transport layer (UDP port 6112), it extracts game state telemetry, player inputs, turn-by-turn coordinates, and latency metrics without injecting foreign threads, attaching debuggers, or modifying game memory.
 
-게임 프로세스 메모리 주입, 후킹, 디버거 연결 없이 원시 소켓 수준에서 독립 실행되며, 안티치트 감시에 100% 안전하게 동작합니다.
+### ⚡ Key Engineering Capabilities
 
-### ⚡ 핵심 엔지니어링 특징 (Core Highlights)
-
-- **Zero Process Mutation**: 프로세스 메모리를 변조하지 않는 독립 실행형(Out-of-Process) 아키텍처
-- **8.44 Mpps Zero-Copy Throughput**: 패킷 1개당 118.4ns의 결정론적 초고속 제로카피 파싱
-- **Direct2D 60FPS HUD & 256x256 Tactical Radar**: 2차원 게임 좌표를 256x256 전술 매트릭스로 정규화
-- **실시간 지연시간(RTT) 및 지터 추적**: 플레이어별 정밀 네트워크 변동성 실측
-- **드랍핵 & 이상 징후 방어 센티널**: 시퀀스 단절, 패킷 플러딩 공격 실시간 탐지
-- **자체 벡터 SVG 캡처 내보내기**: CLI 명령어(`cargo run -- export-svg`)를 통한 실사 벡터 스냅샷
+- **Zero Process Mutation (Anti-Cheat Safe)**: Operates 100% out-of-process via raw sockets and non-blocking UDP listeners. Does not trigger integrity checks or anti-cheat watchdogs.
+- **Microsecond Turn Parsing**: Zero-copy packet deserializer capable of parsing > 8,000,000 packets per second (8.44 Mpps / 118.4 ns per packet) with deterministic memory bounds.
+- **256x256 Tactical Radar Matrix**: Normalizes 2D map space into a discrete tactical grid suitable for Direct2D 60 FPS overlays and terminal HUDs.
+- **Per-Player Latency & Jitter Tracking**: Measures true round-trip time (RTT), sequence gaps, and microsecond packet arrival variance in real time.
+- **Drophack & Network Anomaly Sentinel**: Detects intentional packet flood bursts, sequence discontinuities, and desync attack patterns.
+- **Native SVG & Visual Frame Exporter**: Built-in visual capture engine capable of snapshotting live radar matrices directly to scalable vector SVG files.
 
 ---
 
-## 🏛️ 아키텍처 다이어그램 (Architecture Pipeline)
+## 🏛️ Architecture Pipeline
 
 <p align="center">
   <img src="./docs/assets/architecture.svg" alt="StarCraft UDP 6112 Non-Invasive Packet Telemetry Architecture" width="100%" />
@@ -43,39 +44,39 @@
 
 ---
 
-## 🎮 실시간 전술 레이더 HUD & 터미널 캡처 (Visual Live Captures)
+## 🎮 Visual Live Captures & Tactical HUD
 
 ### In-Game Tactical Radar & Live Telemetry HUD
 <p align="center">
-  <img src="./docs/assets/radar_tactical_hud.svg" alt="Tactical Radar HUD" width="100%" />
+  <img src="./docs/assets/radar_tactical_hud.svg" alt="In-Game Tactical Radar & Live Telemetry HUD" width="100%" />
 </p>
 
 ### CLI Terminal Execution & Benchmark Capture
 <p align="center">
-  <img src="./docs/assets/terminal_capture.svg" alt="Terminal Execution Capture" width="100%" />
+  <img src="./docs/assets/terminal_capture.svg" alt="CLI Terminal Execution & Benchmark Capture" width="100%" />
 </p>
 
 ---
 
-## 🚀 빠른 시작 (Quick Start)
+## 🚀 Quick Start
 
 ```bash
-# 1. 가상 패킷 파이프라인 및 레이더 텔레메트리 데모 실행
+# 1. Run the synthetic packet & radar telemetry demo
 cargo run -- demo
 
-# 2. 10만 패킷 처리율 벤치마크 실행 (8.44 Mpps 검증)
+# 2. Run the 100,000 packet throughput benchmark (8.44 Mpps verification)
 cargo run -- benchmark
 
-# 3. 실시간 전술 레이더 상태를 벡터 SVG 파일로 캡처
+# 3. Export a live tactical radar frame directly to vector SVG
 cargo run -- export-svg docs/assets/radar_export.svg
 
-# 4. 로컬 인터페이스 실시간 UDP 6112 캡처 시작
+# 4. Start live UDP 6112 capture on local interface
 cargo run -- sniff 6112
 ```
 
 ---
 
-## 🧪 테스트 스위트 검증 (Verification)
+## 🧪 Test Suite Verification
 
 ```bash
 cargo test --all-targets
@@ -83,15 +84,13 @@ cargo test --all-targets
 
 ---
 
-## ⚖️ 법적 고지 및 교육용 연구 목적 성명 (Legal & Educational Disclaimer)
+## ⚖️ Legal & Educational Disclaimer
 
-> **[국문]** 본 프로젝트(`k-packet-radar`)는 순수하게 **전송 계층(UDP 6112) 네트워크 프로토콜 분석 실습 및 저지연 시스템 소프트웨어 엔지니어링 학습 연구 목적**으로 작성된 비영리 오픈소스입니다.
-> - **즉각 삭제 및 저장소 정리 공약 (Takedown Commitment)**: 게임 제작사(Blizzard Entertainment) 및 관계사로부터 약관(EULA) 또는 정책적 문제 제기가 있을 경우, **권리자의 요청 접수 즉시 지체 없이 본 저장소를 즉각 삭제 또는 정리(Archived/Removed)할 것을 명확히 공약합니다.**
-> - 상세 법적 성명서: [DISCLAIMER.md](./DISCLAIMER.md) 참조.
-
-> **[English]** This repository is developed strictly for **educational research, low-latency software engineering, and network transport protocol analysis**.
-> - **Immediate Takedown Commitment**: If any legitimate policy, trademark, or terms-of-service concerns are raised by Blizzard Entertainment or relevant authorities, the author will **promptly archive or remove this repository immediately upon notice without delay.**
-> - Full Legal Notice: Refer to [DISCLAIMER.md](./DISCLAIMER.md).
+> **This project is developed strictly for **educational research, network protocol analysis, and low-latency systems software engineering exploration** as a non-commercial open-source study.**
+> 
+> **Immediate Takedown & Deprecation Commitment**: The author respects all intellectual property rights and platform service policies. If Blizzard Entertainment or relevant authorities raise any legitimate terms-of-service (EULA) or policy compliance concerns, **the author solemnly pledges to archive, clean up, or remove this repository immediately upon notice without delay.**
+> 
+> 📖 [DISCLAIMER.md](./DISCLAIMER.md)
 
 ---
 <sub>Copyright © 2026 Ken Park (kLauncher1). Built with pure Rust & Zero-Dependency Native Architecture.</sub>

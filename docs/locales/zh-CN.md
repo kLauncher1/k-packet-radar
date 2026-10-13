@@ -12,30 +12,31 @@
 
 <br>
 
-[🇰🇷 한국어](./ko.md) · [🇺🇸 English](../../README.md) · **🇨🇳 简体中文** · [🇯🇵 日本語](./ja.md) · [🇪🇸 Español](./es.md) · [🇫🇷 Français](./fr.md) · [🇷🇺 Русский](./ru.md) · [🇧🇷 Português](./pt-BR.md) · [🇸🇦 العربية](./ar.md) · [🇮🇳 हिन्दी](./hi.md)
+| 🌐 Language Selector | 언어 선택 | 语言选择 | 言語を選択 | Seleccionar Idioma |
+| :---: | :---: | :---: | :---: | :---: |
+| [🇺🇸 English](../../README.md) | [🇰🇷 한국어](./ko.md) | [🇨🇳 简体中文](#) | [🇯🇵 日本語](./ja.md) | [🇪🇸 Español](./es.md) |
+| [🇫🇷 Français](./fr.md) | [🇷🇺 Русский](./ru.md) | [🇧🇷 Português](./pt-BR.md) | [🇸🇦 العربية](./ar.md) | [🇮🇳 हिन्दी](./hi.md) |
 
 </div>
 
 ---
 
-## 📌 简体中文 개요 (k-packet-radar Overview)
+## 📌 项目概述
 
-`k-packet-radar`는 스타크래프트 브루드워(StarCraft Brood War) 네트워크 트래픽을 위한 **비침습적 전송 계층(UDP 6112) 패킷 분석 및 실시간 텔레메트리 레이더 HUD 엔진**입니다.
+`k-packet-radar` 是专为星际争霸：母巢之战（StarCraft Brood War）网络流量设计的高性能**非侵入式传输层（UDP 6112）数据包分析器与实时战术雷达 HUD 引擎**。它完全运行在原生网络套接字层，无需进程注入、DLL 劫持或调试器挂钩，对反作弊系统 100% 安全。
 
-게임 프로세스 메모리 주입, 후킹, 디버거 연결 없이 원시 소켓 수준에서 독립 실행되며, 안티치트 감시에 100% 안전하게 동작합니다.
+### ⚡ 核心工程特性
 
-### ⚡ 핵심 엔지니어링 특징 (Core Highlights)
-
-- **Zero Process Mutation**: 프로세스 메모리를 변조하지 않는 독립 실행형(Out-of-Process) 아키텍처
-- **8.44 Mpps Zero-Copy Throughput**: 패킷 1개당 118.4ns의 결정론적 초고속 제로카피 파싱
-- **Direct2D 60FPS HUD & 256x256 Tactical Radar**: 2차원 게임 좌표를 256x256 전술 매트릭스로 정규화
-- **실시간 지연시간(RTT) 및 지터 추적**: 플레이어별 정밀 네트워크 변동성 실측
-- **드랍핵 & 이상 징후 방어 센티널**: 시퀀스 단절, 패킷 플러딩 공격 실시간 탐지
-- **자체 벡터 SVG 캡처 내보내기**: CLI 명령어(`cargo run -- export-svg`)를 통한 실사 벡터 스냅샷
+- **零进程注入 (Zero Process Mutation)**: 进程外独立运行架构，绝不触碰或修改游戏内存，完全免疫反作弊扫描。
+- **8.44 Mpps 极速零拷贝吞吐量**: 采用零拷贝内存反序列化，每个数据包仅需 118.4ns 的确定性处理时间。
+- **256×256 战术雷达矩阵**: 将游戏二维空间实时投影归一化为适合 Direct2D 60FPS 叠加层的战术网格。
+- **实时网络遥测与延迟监测**: 微秒级往返时延（RTT）、网络抖动（Jitter）、丢包率及玩家实时估计 APM 追踪。
+- **防恶意拔线与异常警报哨兵**: 实时识别高频数据包洪水与序号断裂攻击，自动保存异常数据包作为证据。
+- **原生矢量 SVG 帧导出**: 内置命令行工具，可直接将实时战术矩阵快照导出为高分辨率 SVG 矢量文件。
 
 ---
 
-## 🏛️ 아키텍처 다이어그램 (Architecture Pipeline)
+## 🏛️ 架构管线设计
 
 <p align="center">
   <img src="../assets/locales/zh-CN/architecture.svg" alt="星际争霸 UDP 6112 非侵入式数据包遥测管线架构" width="100%" />
@@ -43,39 +44,39 @@
 
 ---
 
-## 🎮 실시간 전술 레이더 HUD & 터미널 캡처 (Visual Live Captures)
+## 🎮 实时战术雷达 HUD 与终端捕获
 
-### In-Game Tactical Radar & Live Telemetry HUD
+### 游戏内 Direct2D HUD 战术雷达与实时遥测面板
 <p align="center">
-  <img src="../assets/locales/zh-CN/radar_tactical_hud.svg" alt="Tactical Radar HUD" width="100%" />
+  <img src="../assets/locales/zh-CN/radar_tactical_hud.svg" alt="游戏内 Direct2D HUD 战术雷达与实时遥测面板" width="100%" />
 </p>
 
-### CLI Terminal Execution & Benchmark Capture
+### CLI 终端运行捕获与 8.44 Mpps 吞吐量基准测试
 <p align="center">
-  <img src="../assets/locales/zh-CN/terminal_capture.svg" alt="Terminal Execution Capture" width="100%" />
+  <img src="../assets/locales/zh-CN/terminal_capture.svg" alt="CLI 终端运行捕获与 8.44 Mpps 吞吐量基准测试" width="100%" />
 </p>
 
 ---
 
-## 🚀 빠른 시작 (Quick Start)
+## 🚀 快速开始
 
 ```bash
-# 1. 가상 패킷 파이프라인 및 레이더 텔레메트리 데모 실행
+# 1. 运行合成数据包管线与雷达遥测演示
 cargo run -- demo
 
-# 2. 10만 패킷 처리율 벤치마크 실행 (8.44 Mpps 검증)
+# 2. 运行 100,000 个数据包吞吐量基准测试 (验证 8.44 Mpps)
 cargo run -- benchmark
 
-# 3. 실시간 전술 레이더 상태를 벡터 SVG 파일로 캡처
+# 3. 将实时战术雷达帧直接导出为矢量 SVG
 cargo run -- export-svg docs/assets/radar_export.svg
 
-# 4. 로컬 인터페이스 실시간 UDP 6112 캡처 시작
+# 4. 在本地接口启动实时 UDP 6112 抓包
 cargo run -- sniff 6112
 ```
 
 ---
 
-## 🧪 테스트 스위트 검증 (Verification)
+## 🧪 自动化测试套件验证
 
 ```bash
 cargo test --all-targets
@@ -83,15 +84,13 @@ cargo test --all-targets
 
 ---
 
-## ⚖️ 법적 고지 및 교육용 연구 목적 성명 (Legal & Educational Disclaimer)
+## ⚖️ 法律免责声明与教育研究目的声明
 
-> **[국문]** 본 프로젝트(`k-packet-radar`)는 순수하게 **전송 계층(UDP 6112) 네트워크 프로토콜 분석 실습 및 저지연 시스템 소프트웨어 엔지니어링 학습 연구 목적**으로 작성된 비영리 오픈소스입니다.
-> - **즉각 삭제 및 저장소 정리 공약 (Takedown Commitment)**: 게임 제작사(Blizzard Entertainment) 및 관계사로부터 약관(EULA) 또는 정책적 문제 제기가 있을 경우, **권리자의 요청 접수 즉시 지체 없이 본 저장소를 즉각 삭제 또는 정리(Archived/Removed)할 것을 명확히 공약합니다.**
-> - 상세 법적 성명서: [DISCLAIMER.md](../../DISCLAIMER.md) 참조.
-
-> **[English]** This repository is developed strictly for **educational research, low-latency software engineering, and network transport protocol analysis**.
-> - **Immediate Takedown Commitment**: If any legitimate policy, trademark, or terms-of-service concerns are raised by Blizzard Entertainment or relevant authorities, the author will **promptly archive or remove this repository immediately upon notice without delay.**
-> - Full Legal Notice: Refer to [DISCLAIMER.md](../../DISCLAIMER.md).
+> **本项目纯粹用于**传输层（UDP 6112）网络协议分析学习与低延迟系统软件工程学术研究目的**，为非商业开源软件。**
+> 
+> **立即下架与清理承诺 (Takedown Commitment)**: 作者充分尊重知识产权与平台政策。若暴雪娱乐（Blizzard Entertainment）或相关版权方基于最终用户许可协议（EULA）或服务政策提出合规要求，**作者承诺在收到通知后立即下架或彻底清理本代码仓库，绝无拖延。**
+> 
+> 📖 [DISCLAIMER.md](../../DISCLAIMER.md)
 
 ---
 <sub>Copyright © 2026 Ken Park (kLauncher1). Built with pure Rust & Zero-Dependency Native Architecture.</sub>
