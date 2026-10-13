@@ -1,5 +1,11 @@
 <div align="center">
 
+<!-- 10-Language Navigation Bar -->
+<p align="center">
+  <a href="../../README.md">🇺🇸 English</a> · <a href="./ko.md">🇰🇷 한국어</a> · <b>🇨🇳 简体中文</b> · <a href="./ja.md">🇯🇵 日本語</a> · <a href="./es.md">🇪🇸 Español</a><br />
+  <a href="./fr.md">🇫🇷 Français</a> · <a href="./ru.md">🇷🇺 Русский</a> · <a href="./pt-BR.md">🇧🇷 Português</a> · <a href="./ar.md">🇸🇦 العربية</a> · <a href="./hi.md">🇮🇳 हिन्दी</a>
+</p>
+
 <p align="center">
   <img src="../assets/locales/zh-CN/banner.svg" alt="k-packet-radar banner" width="100%" />
 </p>
@@ -9,13 +15,6 @@
 **非侵入式 UDP 6112 数据包解析器与实时战术雷达 HUD 引擎**
 
 <sub>零进程注入 · 实时延迟测量 · 防作弊安全 · 8.0+ Mpps 零拷贝吞吐量</sub>
-
-<br>
-
-| 🌐 Language Selector | 언어 선택 | 语言选择 | 言語を選択 | Seleccionar Idioma |
-| :---: | :---: | :---: | :---: | :---: |
-| [🇺🇸 English](../../README.md) | [🇰🇷 한국어](./ko.md) | [🇨🇳 简体中文](#) | [🇯🇵 日本語](./ja.md) | [🇪🇸 Español](./es.md) |
-| [🇫🇷 Français](./fr.md) | [🇷🇺 Русский](./ru.md) | [🇧🇷 Português](./pt-BR.md) | [🇸🇦 العربية](./ar.md) | [🇮🇳 हिन्दी](./hi.md) |
 
 </div>
 

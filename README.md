@@ -1,5 +1,11 @@
 <div align="center">
 
+<!-- 10-Language Navigation Bar -->
+<p align="center">
+  <b>🇺🇸 English</b> · <a href="./docs/locales/ko.md">🇰🇷 한국어</a> · <a href="./docs/locales/zh-CN.md">🇨🇳 简体中文</a> · <a href="./docs/locales/ja.md">🇯🇵 日本語</a> · <a href="./docs/locales/es.md">🇪🇸 Español</a><br />
+  <a href="./docs/locales/fr.md">🇫🇷 Français</a> · <a href="./docs/locales/ru.md">🇷🇺 Русский</a> · <a href="./docs/locales/pt-BR.md">🇧🇷 Português</a> · <a href="./docs/locales/ar.md">🇸🇦 العربية</a> · <a href="./docs/locales/hi.md">🇮🇳 हिन्दी</a>
+</p>
+
 <p align="center">
   <img src="./docs/assets/banner.svg" alt="k-packet-radar banner" width="100%" />
 </p>
@@ -9,13 +15,6 @@
 **Non-Invasive UDP 6112 Packet Parser & Tactical Radar HUD Engine**
 
 <sub>Zero Process Mutation · Real-Time Latency Metrics · Anti-Cheat Safe · 8.0+ Mpps Throughput</sub>
-
-<br>
-
-| 🌐 Language Selector | 언어 선택 | 语言选择 | 言語を選択 | Seleccionar Idioma |
-| :---: | :---: | :---: | :---: | :---: |
-| [🇺🇸 English](#) | [🇰🇷 한국어](./docs/locales/ko.md) | [🇨🇳 简体中文](./docs/locales/zh-CN.md) | [🇯🇵 日本語](./docs/locales/ja.md) | [🇪🇸 Español](./docs/locales/es.md) |
-| [🇫🇷 Français](./docs/locales/fr.md) | [🇷🇺 Русский](./docs/locales/ru.md) | [🇧🇷 Português](./docs/locales/pt-BR.md) | [🇸🇦 العربية](./docs/locales/ar.md) | [🇮🇳 हिन्दी](./docs/locales/hi.md) |
 
 </div>
 

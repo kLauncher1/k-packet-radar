@@ -1,5 +1,11 @@
 <div align="center">
 
+<!-- 10-Language Navigation Bar -->
+<p align="center">
+  <a href="../../README.md">🇺🇸 English</a> · <b>🇰🇷 한국어</b> · <a href="./zh-CN.md">🇨🇳 简体中文</a> · <a href="./ja.md">🇯🇵 日本語</a> · <a href="./es.md">🇪🇸 Español</a><br />
+  <a href="./fr.md">🇫🇷 Français</a> · <a href="./ru.md">🇷🇺 Русский</a> · <a href="./pt-BR.md">🇧🇷 Português</a> · <a href="./ar.md">🇸🇦 العربية</a> · <a href="./hi.md">🇮🇳 हिन्दी</a>
+</p>
+
 <p align="center">
   <img src="../assets/locales/ko/banner.svg" alt="k-packet-radar banner" width="100%" />
 </p>
@@ -9,13 +15,6 @@
 **비침습적 UDP 6112 패킷 파서 & 실시간 전술 레이더 HUD 엔진**
 
 <sub>프로세스 변조 제로 · 실시간 지연시간 측정 · 안티치트 안전 · 8.0+ Mpps 처리율</sub>
-
-<br>
-
-| 🌐 Language Selector | 언어 선택 | 语言选择 | 言語を選択 | Seleccionar Idioma |
-| :---: | :---: | :---: | :---: | :---: |
-| [🇺🇸 English](../../README.md) | [🇰🇷 한국어](#) | [🇨🇳 简体中文](./zh-CN.md) | [🇯🇵 日本語](./ja.md) | [🇪🇸 Español](./es.md) |
-| [🇫🇷 Français](./fr.md) | [🇷🇺 Русский](./ru.md) | [🇧🇷 Português](./pt-BR.md) | [🇸🇦 العربية](./ar.md) | [🇮🇳 हिन्दी](./hi.md) |
 
 </div>
 

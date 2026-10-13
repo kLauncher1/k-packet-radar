@@ -1,5 +1,11 @@
 <div align="center">
 
+<!-- 10-Language Navigation Bar -->
+<p align="center">
+  <a href="../../README.md">🇺🇸 English</a> · <a href="./ko.md">🇰🇷 한국어</a> · <a href="./zh-CN.md">🇨🇳 简体中文</a> · <a href="./ja.md">🇯🇵 日本語</a> · <a href="./es.md">🇪🇸 Español</a><br />
+  <b>🇫🇷 Français</b> · <a href="./ru.md">🇷🇺 Русский</a> · <a href="./pt-BR.md">🇧🇷 Português</a> · <a href="./ar.md">🇸🇦 العربية</a> · <a href="./hi.md">🇮🇳 हिन्दी</a>
+</p>
+
 <p align="center">
   <img src="../assets/locales/fr/banner.svg" alt="k-packet-radar banner" width="100%" />
 </p>
@@ -9,13 +15,6 @@
 **Analyseur de paquets UDP 6112 non invasif & HUD de radar tactique**
 
 <sub>Zéro mutation de processus · Métriques en temps réel · Anti-Triche Sûr · 8.0+ Mpps</sub>
-
-<br>
-
-| 🌐 Language Selector | 언어 선택 | 语言选择 | 言語を選択 | Seleccionar Idioma |
-| :---: | :---: | :---: | :---: | :---: |
-| [🇺🇸 English](../../README.md) | [🇰🇷 한국어](./ko.md) | [🇨🇳 简体中文](./zh-CN.md) | [🇯🇵 日本語](./ja.md) | [🇪🇸 Español](./es.md) |
-| [🇫🇷 Français](#) | [🇷🇺 Русский](./ru.md) | [🇧🇷 Português](./pt-BR.md) | [🇸🇦 العربية](./ar.md) | [🇮🇳 हिन्दी](./hi.md) |
 
 </div>
 
