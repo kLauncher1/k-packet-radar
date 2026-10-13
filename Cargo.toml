@@ -1,0 +1,12 @@
+[package]
+name = "k-packet-radar"
+version = "0.1.0"
+edition = "2021"
+authors = ["Ken Park <kLauncher1>"]
+description = "High-performance UDP 6112 non-invasive packet parser, real-time tactical radar HUD & latency monitor for StarCraft."
+license = "Apache-2.0"
+repository = "https://github.com/kLauncher1/k-packet-radar"
+
+[dependencies]
+
+[dev-dependencies]
