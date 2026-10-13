@@ -82,4 +82,16 @@ cargo test --all-targets
 ```
 
 ---
+
+## ⚖️ 법적 고지 및 교육용 연구 목적 성명 (Legal & Educational Disclaimer)
+
+> **[국문]** 본 프로젝트(`k-packet-radar`)는 순수하게 **전송 계층(UDP 6112) 네트워크 프로토콜 분석 실습 및 저지연 시스템 소프트웨어 엔지니어링 학습 연구 목적**으로 작성된 비영리 오픈소스입니다.
+> - **즉각 삭제 및 저장소 정리 공약 (Takedown Commitment)**: 게임 제작사(Blizzard Entertainment) 및 관계사로부터 약관(EULA) 또는 정책적 문제 제기가 있을 경우, **권리자의 요청 접수 즉시 지체 없이 본 저장소를 즉각 삭제 또는 정리(Archived/Removed)할 것을 명확히 공약합니다.**
+> - 상세 법적 성명서: [DISCLAIMER.md](./DISCLAIMER.md) 참조.
+
+> **[English]** This repository is developed strictly for **educational research, low-latency software engineering, and network transport protocol analysis**.
+> - **Immediate Takedown Commitment**: If any legitimate policy, trademark, or terms-of-service concerns are raised by Blizzard Entertainment or relevant authorities, the author will **promptly archive or remove this repository immediately upon notice without delay.**
+> - Full Legal Notice: Refer to [DISCLAIMER.md](./DISCLAIMER.md).
+
+---
 <sub>Copyright © 2026 Ken Park (kLauncher1). Built with pure Rust & Zero-Dependency Native Architecture.</sub>
