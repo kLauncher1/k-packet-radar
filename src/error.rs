@@ -8,6 +8,8 @@ pub enum PacketRadarError {
     MalformedTurnHeader,
     SocketError(String),
     BufferOverflow(usize),
+    MalformedAction(String),
+    MalformedState(String),
 }
 
 impl fmt::Display for PacketRadarError {
@@ -24,6 +26,8 @@ impl fmt::Display for PacketRadarError {
             Self::MalformedTurnHeader => write!(f, "malformed StarCraft turn header"),
             Self::SocketError(msg) => write!(f, "socket I/O error: {msg}"),
             Self::BufferOverflow(len) => write!(f, "packet exceeds maximum allowed MTU: {len}"),
+            Self::MalformedAction(msg) => write!(f, "malformed player action: {msg}"),
+            Self::MalformedState(msg) => write!(f, "malformed game state payload: {msg}"),
         }
     }
 }

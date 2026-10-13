@@ -75,6 +75,71 @@ cargo run -- sniff 6112
 
 ---
 
+## 📦 Protocol Parsing & Deserialization Example
+
+The protocol engine decomposes UDP 6112 datagrams with zero heap allocation across fixed headers and granular bounds checking:
+
+```rust
+use k_packet_radar::{
+    ActionType, PacketHeader, PacketFlags, StarCraftPacket, TurnFrame,
+    UnitState, UnitStatusFlags, SC_PACKET_MAGIC,
+};
+
+// 1. Parse an incoming raw UDP 6112 datagram
+let packet = StarCraftPacket::parse(&raw_udp_bytes)?;
+println!(
+    "Packet seq={} player={} reliable={}",
+    packet.header.sequence,
+    packet.header.player_id,
+    packet.header.packet_flags().is_reliable()
+);
+
+// 2. Extract lockstep simulation turn inputs
+if let Some(turn) = &packet.turn {
+    println!("Turn #{} with {} actions", turn.turn_index, turn.actions.len());
+    for action in &turn.actions {
+        match action {
+            ActionType::Move { x, y } => println!("Command -> Move to ({x}, {y})"),
+            ActionType::Attack { target_id } => println!("Command -> Attack target #{target_id}"),
+            ActionType::AttackMove { x, y } => println!("Command -> Attack-Move to ({x}, {y})"),
+            ActionType::CastSpell { spell_id, target_id } => {
+                println!("Command -> Cast spell #{spell_id} on target #{target_id}");
+            }
+            ActionType::SelectUnits { unit_ids } => {
+                println!("Command -> Selection of {} units", unit_ids.len());
+            }
+            ActionType::ChatMessage { text } => println!("Chat -> {text}"),
+            _ => {}
+        }
+    }
+
+    // 3. Verify turn synchronization checksum for desync detection
+    let sync_frame = turn.to_sync_frame(0xCAFE_BABE, 2);
+    assert_eq!(sync_frame.turn_index, turn.turn_index);
+}
+
+// 4. Decode 18-byte unit telemetry block & inspect status bitflags
+let unit = UnitState::parse(&unit_bytes)?;
+if unit.status_flags.is_cloaked() {
+    println!("Unit #{} is cloaked!", unit.unit_id);
+}
+if unit.status_flags.is_sieged() {
+    println!("Unit #{} is deployed in Siege Mode!", unit.unit_id);
+}
+```
+
+```mermaid
+flowchart TD
+    UDP["UDP 6112 Raw Datagram"] --> Header["PacketHeader (12 Bytes)<br/>Magic: 'SCPK' | Seq | PlayerID | Flags"]
+    Header --> Dispatcher{"Payload Type"}
+    Dispatcher -->|"0x01..0x0F"| Actions["Action Decoder<br/>Move / Attack / Cast / Build / Select"]
+    Dispatcher -->|"Turn Header"| Frame["TurnFrame & Sync Verification<br/>FNV-1a Desync Checksum"]
+    Dispatcher -->|"Telemetry"| State["Game State Deserializer<br/>UnitState / BaseState / PlayerState"]
+    State --> HUD["Tactical 256x256 Radar Matrix"]
+```
+
+---
+
 ## 🧪 Test Suite Verification
 
 ```bash
