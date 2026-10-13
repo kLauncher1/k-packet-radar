@@ -24,3 +24,15 @@ fn test_radar_ascii_rendering() {
     assert!(ascii.contains('w'));
     assert!(ascii.contains('B'));
 }
+
+#[test]
+fn test_radar_svg_export() {
+    let mut radar = RadarGrid::new(100, 100);
+    radar.update_object(10, 0, ObjectCategory::AirUnit, 50, 50, 1);
+    let svg = radar.export_svg(400, 400);
+
+    assert!(svg.starts_with("<svg"));
+    assert!(svg.ends_with("</svg>\n"));
+    assert!(svg.contains("viewBox=\"0 0 400 400\""));
+    assert!(svg.contains("#7C4DFF")); // AirUnit color
+}

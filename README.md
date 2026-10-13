@@ -25,6 +25,21 @@
 - **Per-Player Latency & Jitter Tracking**: Measures true round-trip time (RTT), sequence gaps, and microsecond packet arrival variance in real time.
 - **Network Anomaly & Drophack Detection**: Detects intentional packet flood bursts, sequence discontinuities, and desync patterns.
 - **Tactical Radar Matrix**: Normalizes 2D map space into a 256x256 discrete tactical grid suitable for Direct2D 60 FPS overlays and terminal HUDs.
+- **Native SVG & Visual Frame Exporter**: Built-in visual capture engine capable of snapshotting live radar matrices directly to scalable vector SVG files.
+
+---
+
+## Visual Showcase & Live Captures
+
+### In-Game Tactical Radar & Live Telemetry HUD
+<p align="center">
+  <img src="./docs/assets/radar_tactical_hud.svg" alt="In-game Direct2D HUD Tactical Radar & Live Telemetry" width="100%" />
+</p>
+
+### CLI Terminal Execution & Benchmark Capture
+<p align="center">
+  <img src="./docs/assets/terminal_capture.svg" alt="k-packet-radar Terminal Execution Capture" width="100%" />
+</p>
 
 ---
 
@@ -70,6 +85,9 @@ cargo run -- demo
 
 # Run the 100,000 packet throughput benchmark
 cargo run -- benchmark
+
+# Export a live tactical radar frame directly to vector SVG
+cargo run -- export-svg docs/assets/radar_export.svg
 
 # Start live UDP 6112 capture on local interface
 cargo run -- sniff 6112

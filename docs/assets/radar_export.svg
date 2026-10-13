@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="600" style="background:#0d1117;border-radius:6px;font-family:monospace">
+  <g opacity="0.2" stroke="#00E5FF" stroke-width="1">
+    <line x1="0" y1="0" x2="0" y2="600"/>
+    <line x1="75" y1="0" x2="75" y2="600"/>
+    <line x1="150" y1="0" x2="150" y2="600"/>
+    <line x1="225" y1="0" x2="225" y2="600"/>
+    <line x1="300" y1="0" x2="300" y2="600"/>
+    <line x1="375" y1="0" x2="375" y2="600"/>
+    <line x1="450" y1="0" x2="450" y2="600"/>
+    <line x1="525" y1="0" x2="525" y2="600"/>
+    <line x1="0" y1="0" x2="600" y2="0"/>
+    <line x1="0" y1="75" x2="600" y2="75"/>
+    <line x1="0" y1="150" x2="600" y2="150"/>
+    <line x1="0" y1="225" x2="600" y2="225"/>
+    <line x1="0" y1="300" x2="600" y2="300"/>
+    <line x1="0" y1="375" x2="600" y2="375"/>
+    <line x1="0" y1="450" x2="600" y2="450"/>
+    <line x1="0" y1="525" x2="600" y2="525"/>
+  </g>
+  <circle cx="300" cy="300" r="270" fill="none" stroke="#00E5FF" stroke-width="1" opacity="0.4"/>
+  <circle cx="300" cy="300" r="135" fill="none" stroke="#00FF9D" stroke-width="1" opacity="0.3" stroke-dasharray="4,4"/>
+  <circle cx="93" cy="79" r="3" fill="#00FF9D" opacity="0.9"/>
+  <circle cx="103" cy="84" r="3" fill="#00FF9D" opacity="0.9"/>
+  <circle cx="297" cy="297" r="5" fill="#7C4DFF" opacity="0.9"/>
+  <circle cx="494" cy="494" r="6" fill="#FFB300" opacity="0.9"/>
+  <circle cx="131" cy="100" r="6" fill="#FFB300" opacity="0.9"/>
+  <circle cx="466" cy="450" r="6" fill="#FFB300" opacity="0.9"/>
+  <circle cx="487" cy="501" r="3" fill="#00FF9D" opacity="0.9"/>
+  <circle cx="318" cy="304" r="4" fill="#00E5FF" opacity="0.9"/>
+  <circle cx="262" cy="232" r="4" fill="#00E5FF" opacity="0.9"/>
+  <circle cx="311" cy="311" r="4" fill="#00E5FF" opacity="0.9"/>
+  <circle cx="349" cy="335" r="5" fill="#7C4DFF" opacity="0.9"/>
+  <circle cx="84" cy="89" r="3" fill="#00FF9D" opacity="0.9"/>
+  <circle cx="269" cy="234" r="4" fill="#00E5FF" opacity="0.9"/>
+  <circle cx="86" cy="86" r="6" fill="#FFB300" opacity="0.9"/>
+  <text x="16" y="24" fill="#00E5FF" font-size="14" font-weight="bold">TACTICAL RADAR [14 UNITS DETECTED]</text>
+</svg>

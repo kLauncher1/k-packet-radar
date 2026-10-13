@@ -21,8 +21,15 @@ fn main() {
             println!("[*] Listening for StarCraft UDP traffic. Press Ctrl+C to terminate.");
         }
         "benchmark" => run_benchmark(),
+        "export-svg" => {
+            let out_file = args
+                .get(2)
+                .map(|s| s.as_str())
+                .unwrap_or("radar_snapshot.svg");
+            run_export_svg(out_file);
+        }
         other => {
-            eprintln!("Unknown mode: {other}. Available: demo, sniff, benchmark");
+            eprintln!("Unknown mode: {other}. Available: demo, sniff, benchmark, export-svg");
             std::process::exit(1);
         }
     }
@@ -124,5 +131,36 @@ fn run_benchmark() {
         elapsed,
         per_op_ns,
         1_000.0 / per_op_ns
+    );
+}
+
+fn run_export_svg(out_file: &str) {
+    println!("[*] Generating live tactical radar snapshot to '{out_file}'...");
+    let mut radar = RadarGrid::new(4096, 4096);
+
+    // Player 1 army & base (Protoss)
+    radar.update_object(101, 1, ObjectCategory::Building, 600, 600, 100); // Nexus
+    radar.update_object(102, 1, ObjectCategory::Building, 900, 700, 100); // Gateway
+    radar.update_object(103, 1, ObjectCategory::Worker, 650, 550, 100); // Probe 1
+    radar.update_object(104, 1, ObjectCategory::Worker, 580, 620, 100); // Probe 2
+    radar.update_object(105, 1, ObjectCategory::Worker, 720, 590, 100); // Probe 3
+    radar.update_object(110, 1, ObjectCategory::CombatUnit, 1800, 1600, 100); // Dragoon 1
+    radar.update_object(111, 1, ObjectCategory::CombatUnit, 1850, 1620, 100); // Dragoon 2
+    radar.update_object(112, 1, ObjectCategory::AirUnit, 2048, 2048, 100); // Observer (Center)
+
+    // Player 2 army & base (Terran)
+    radar.update_object(201, 2, ObjectCategory::Building, 3400, 3400, 100); // Command Center
+    radar.update_object(202, 2, ObjectCategory::Building, 3200, 3100, 100); // Factory
+    radar.update_object(203, 2, ObjectCategory::Worker, 3350, 3450, 100); // SCV 1
+    radar.update_object(210, 2, ObjectCategory::CombatUnit, 2200, 2100, 100); // Siege Tank
+    radar.update_object(211, 2, ObjectCategory::CombatUnit, 2150, 2150, 100); // Vulture
+    radar.update_object(212, 2, ObjectCategory::AirUnit, 2400, 2300, 100); // Dropship
+
+    let svg_content = radar.export_svg(600, 600);
+    std::fs::write(out_file, &svg_content).expect("write svg file");
+    println!(
+        "[+] Successfully exported tactical radar snapshot ({} bytes) to '{}'",
+        svg_content.len(),
+        out_file
     );
 }
