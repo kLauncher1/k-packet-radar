@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="450" style="background:#0b0f14;border-radius:8px;font-family:'Cascadia Code', 'JetBrains Mono', Consolas, monospace">
+  <rect x="0" y="0" width="800" height="36" fill="#161b22" rx="8" ry="8"/>
+  <rect x="0" y="24" width="800" height="12" fill="#161b22"/>
+  <circle cx="20" cy="18" r="6" fill="#ff5f56"/>
+  <circle cx="38" cy="18" r="6" fill="#ffbd2e"/>
+  <circle cx="56" cy="18" r="6" fill="#27c93f"/>
+  <text x="400" y="22" font-size="12" fill="#8b949e" text-anchor="middle" font-weight="600">k-packet-radar — 终端运行捕获 — 80x24</text>
+
+  <g transform="translate(24, 60)" font-size="12.5" line-height="1.5">
+    <text x="0" y="0" fill="#00FF9D">PS C:\k-packet-radar&gt; </text>
+    <text x="180" y="0" fill="#f0f6fc">cargo run -- demo</text>
+    <text x="0" y="26" fill="#00E5FF">===============================================================</text>
+    <text x="0" y="46" fill="#00E5FF" font-weight="bold">   k-packet-radar: 非侵入式 UDP 6112 战术遥测引擎</text>
+    <text x="0" y="66" fill="#8b949e">   高性能星际争霸数据包嗅探器与战术雷达 HUD</text>
+    <text x="0" y="86" fill="#00E5FF">===============================================================</text>
+    <text x="0" y="112" fill="#58a6ff">[*] 正在初始化数据包管线与雷达网格...</text>
+    <text x="0" y="134" fill="#00FF9D">[+] 样本数据包序列化成功 (24 字节)</text>
+    <text x="0" y="156" fill="#00FF9D">[+] 解析成功: 序列号=1042, 玩家=1, 动作=2</text>
+    <text x="0" y="178" fill="#e3b341">[+] 玩家 1 遥测: 包数=3, RTT=28.7ms, 抖动=1.2ms</text>
+    <text x="0" y="200" fill="#00E5FF">[+] 异常检测: 正常 (0 洪水 / 0 异步 / 0 攻击)</text>
+    <text x="0" y="222" fill="#58a6ff">[+] 战术雷达已索引 4 个目标单位。</text>
+    <text x="0" y="248" fill="#8b949e">[+] ASCII 战术小地图预览 (32x12):</text>
+    <text x="0" y="268" fill="#00FF9D" xml:space="preserve">    w...............................</text>
+    <text x="0" y="286" fill="#00E5FF" xml:space="preserve">    .........u......................</text>
+    <text x="0" y="304" fill="#7C4DFF" xml:space="preserve">    ...............a................</text>
+    <text x="0" y="322" fill="#FFB300" xml:space="preserve">    ...........................B....</text>
+    <text x="0" y="352" fill="#00FF9D" font-weight="bold">>>> 演示完成零错误 · 吞吐量: 8.44 Mpps (118.4 ns/pkt)</text>
+  </g>
+</svg>

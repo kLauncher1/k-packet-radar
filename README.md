@@ -6,140 +6,80 @@
 
 # k-packet-radar
 
-**High-Performance UDP 6112 Non-Invasive Packet Parser & Real-Time Tactical Telemetry Engine**
+**Non-Invasive UDP 6112 Packet Parser & Tactical Radar HUD Engine**
 
-<sub>Engineered by **Ken Park (kLauncher1)** · Deterministic Systems & Low-Latency Network Tools</sub>
+<sub>Zero Process Mutation · Real-Time Latency Metrics · Anti-Cheat Safe · 8.0+ Mpps Throughput</sub>
+
+<br>
+
+[🇰🇷 한국어](./docs/locales/ko.md) · **🇺🇸 English** · [🇨🇳 简体中文](./docs/locales/zh-CN.md) · [🇯🇵 日本語](./docs/locales/ja.md) · [🇪🇸 Español](./docs/locales/es.md) · [🇫🇷 Français](./docs/locales/fr.md) · [🇷🇺 Русский](./docs/locales/ru.md) · [🇧🇷 Português](./docs/locales/pt-BR.md) · [🇸🇦 العربية](./docs/locales/ar.md) · [🇮🇳 हिन्दी](./docs/locales/hi.md)
 
 </div>
 
 ---
 
-## Overview
+## 📌 English 개요 (k-packet-radar Overview)
 
-`k-packet-radar` is a native, non-invasive packet analysis engine and tactical telemetry pipeline designed for StarCraft Brood War network traffic. By operating strictly at the network transport layer (UDP port 6112), it extracts game state telemetry, player inputs, turn-by-turn coordinates, and latency metrics without injecting foreign threads, attaching debuggers, or modifying game memory.
+`k-packet-radar`는 스타크래프트 브루드워(StarCraft Brood War) 네트워크 트래픽을 위한 **비침습적 전송 계층(UDP 6112) 패킷 분석 및 실시간 텔레메트리 레이더 HUD 엔진**입니다.
 
-### Key Engineering Capabilities
+게임 프로세스 메모리 주입, 후킹, 디버거 연결 없이 원시 소켓 수준에서 독립 실행되며, 안티치트 감시에 100% 안전하게 동작합니다.
 
-- **Zero Process Mutation (Anti-Cheat Safe)**: Operates 100% out-of-process via raw sockets and non-blocking UDP listeners. Does not trigger integrity checks or anti-cheat watchdogs.
-- **Microsecond Turn Parsing**: Zero-copy packet deserializer capable of parsing > 8,000,000 packets per second with deterministic memory bounds.
-- **Per-Player Latency & Jitter Tracking**: Measures true round-trip time (RTT), sequence gaps, and microsecond packet arrival variance in real time.
-- **Network Anomaly & Drophack Detection**: Detects intentional packet flood bursts, sequence discontinuities, and desync patterns.
-- **Tactical Radar Matrix**: Normalizes 2D map space into a 256x256 discrete tactical grid suitable for Direct2D 60 FPS overlays and terminal HUDs.
-- **Native SVG & Visual Frame Exporter**: Built-in visual capture engine capable of snapshotting live radar matrices directly to scalable vector SVG files.
+### ⚡ 핵심 엔지니어링 특징 (Core Highlights)
+
+- **Zero Process Mutation**: 프로세스 메모리를 변조하지 않는 독립 실행형(Out-of-Process) 아키텍처
+- **8.44 Mpps Zero-Copy Throughput**: 패킷 1개당 118.4ns의 결정론적 초고속 제로카피 파싱
+- **Direct2D 60FPS HUD & 256x256 Tactical Radar**: 2차원 게임 좌표를 256x256 전술 매트릭스로 정규화
+- **실시간 지연시간(RTT) 및 지터 추적**: 플레이어별 정밀 네트워크 변동성 실측
+- **드랍핵 & 이상 징후 방어 센티널**: 시퀀스 단절, 패킷 플러딩 공격 실시간 탐지
+- **자체 벡터 SVG 캡처 내보내기**: CLI 명령어(`cargo run -- export-svg`)를 통한 실사 벡터 스냅샷
 
 ---
 
-## Visual Showcase & Live Captures
+## 🏛️ 아키텍처 다이어그램 (Architecture Pipeline)
+
+<p align="center">
+  <img src="./docs/assets/architecture.svg" alt="StarCraft UDP 6112 Non-Invasive Packet Telemetry Architecture" width="100%" />
+</p>
+
+---
+
+## 🎮 실시간 전술 레이더 HUD & 터미널 캡처 (Visual Live Captures)
 
 ### In-Game Tactical Radar & Live Telemetry HUD
 <p align="center">
-  <img src="./docs/assets/radar_tactical_hud.svg" alt="In-game Direct2D HUD Tactical Radar & Live Telemetry" width="100%" />
+  <img src="./docs/assets/radar_tactical_hud.svg" alt="Tactical Radar HUD" width="100%" />
 </p>
 
 ### CLI Terminal Execution & Benchmark Capture
 <p align="center">
-  <img src="./docs/assets/terminal_capture.svg" alt="k-packet-radar Terminal Execution Capture" width="100%" />
+  <img src="./docs/assets/terminal_capture.svg" alt="Terminal Execution Capture" width="100%" />
 </p>
 
 ---
 
-## Architecture
-
-```text
-       [UDP 6112 Network Traffic]
-                   │
-                   ▼
-       ┌────────────────────────┐
-       │   src/sniffer/mod.rs   │  <-- Non-blocking UDP ring buffer listener
-       └───────────┬────────────┘
-                   │ Raw Packet Bytes
-                   ▼
-       ┌────────────────────────┐
-       │  src/protocol/mod.rs   │  <-- StarCraft Brood War turn & action parser
-       └─────┬────────────┬─────┘
-             │            │
-       Actions            Turn Telemetry
-             │            │
-             ▼            ▼
- ┌──────────────────┐  ┌──────────────────┐
- │  src/hud/mod.rs  │  │ src/metrics/mod.rs│
- │ 256x256 Radar    │  │ RTT, Jitter &    │
- │ Normalization    │  │ Anomaly Detection│
- └──────────────────┘  └──────────────────┘
-```
-
----
-
-## Quick Start
-
-### Prerequisites
-
-- Rust 1.80+ (`cargo`)
-- Windows 10/11 x64
-
-### Build & Run
+## 🚀 빠른 시작 (Quick Start)
 
 ```bash
-# Run the synthetic packet & radar telemetry demo
+# 1. 가상 패킷 파이프라인 및 레이더 텔레메트리 데모 실행
 cargo run -- demo
 
-# Run the 100,000 packet throughput benchmark
+# 2. 10만 패킷 처리율 벤치마크 실행 (8.44 Mpps 검증)
 cargo run -- benchmark
 
-# Export a live tactical radar frame directly to vector SVG
+# 3. 실시간 전술 레이더 상태를 벡터 SVG 파일로 캡처
 cargo run -- export-svg docs/assets/radar_export.svg
 
-# Start live UDP 6112 capture on local interface
+# 4. 로컬 인터페이스 실시간 UDP 6112 캡처 시작
 cargo run -- sniff 6112
 ```
 
-### Running Test Suite
+---
+
+## 🧪 테스트 스위트 검증 (Verification)
 
 ```bash
-# Execute unit and integration tests
 cargo test --all-targets
-
-# Run formatting and clippy static analysis
-cargo fmt --all -- --check
-cargo clippy --all-targets -- -D warnings
 ```
 
 ---
-
-## Benchmark Metrics
-
-Measured on Windows 11 (AMD Ryzen / Intel Core):
-
-| Metric | Measured Value | Standard Deviation |
-| :--- | :--- | :--- |
-| **Packet Parse Latency** | **~118.4 ns / packet** | ± 4.2 ns |
-| **Parser Throughput** | **8.44 Mpps** | — |
-| **Buffer Memory Footprint** | **< 350 KB resident** | Deterministic |
-| **Heap Allocations per Packet** | **0 (Zero-Copy Slicing)** | Invariant |
-
----
-
-## Module Layout
-
-| Path | Responsibility | Soft Line Limit |
-| :--- | :--- | :--- |
-| `src/lib.rs` | Public crate root, re-exports, common traits | < 100 lines |
-| `src/main.rs` | CLI application entry point and mode router | < 150 lines |
-| `src/sniffer/mod.rs` | Non-blocking UDP socket wrapper and capture buffer | < 200 lines |
-| `src/protocol/mod.rs` | StarCraft UDP turn frames and player actions | < 250 lines |
-| `src/metrics/mod.rs` | Per-player RTT, jitter, and packet flood detector | < 200 lines |
-| `src/hud/mod.rs` | 256x256 coordinate normalizer and ASCII radar | < 150 lines |
-
----
-
-## Security & Reliability Invariants
-
-1. **Strict Buffer Bounds**: Truncated UDP payloads are rejected cleanly with typed errors (`PacketRadarError::BufferTooShort`).
-2. **MTU Ceiling**: Datagrams exceeding standard 1500 bytes are dropped prior to parsing to prevent memory exhaustion attacks.
-3. **No External Assets**: All images and banners are self-hosted within the repository (`docs/assets/`).
-
----
-
-## License
-
-Apache License 2.0. See [LICENSE](./LICENSE) for details.
+<sub>Copyright © 2026 Ken Park (kLauncher1). Built with pure Rust & Zero-Dependency Native Architecture.</sub>

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="100%" height="520" style="background:#090d14;border-radius:8px;font-family:'Segoe UI', sans-serif">
+  <!-- Title Header -->
+  <rect x="0" y="0" width="900" height="42" fill="#111824"/>
+  <circle cx="20" cy="21" r="6" fill="#00E5FF"/>
+  <text x="36" y="26" font-size="14" fill="#00E5FF" font-weight="bold">StarCraft UDP 6112 非侵襲的パケットテレメトリパイプライン設計</text>
+  <text x="880" y="26" font-size="11" fill="#00FF9D" text-anchor="end">PIPELINE v0.1.0 · UDP 6112</text>
+
+  <!-- Layer 1: Network Ingestion Layer -->
+  <g transform="translate(30, 60)">
+    <rect x="0" y="0" width="840" height="90" rx="6" fill="#0d141e" stroke="#00E5FF" stroke-width="1.2"/>
+    <rect x="15" y="-12" width="220" height="24" rx="4" fill="#00E5FF"/>
+    <text x="25" y="4" font-size="12" fill="#090d14" font-weight="bold">1. NETWORK INGESTION</text>
+    
+    <rect x="25" y="25" width="240" height="50" rx="4" fill="#15202e" stroke="#1f2f42"/>
+    <text x="35" y="45" font-size="12" fill="#00E5FF" font-weight="bold">StarCraft UDP 6112 Traffic</text>
+    <text x="35" y="63" font-size="10" fill="#8b949e">Brood War P2P Turn Packets</text>
+
+    <text x="285" y="55" font-size="16" fill="#00FF9D" font-weight="bold">→</text>
+
+    <rect x="320" y="25" width="240" height="50" rx="4" fill="#15202e" stroke="#1f2f42"/>
+    <text x="330" y="45" font-size="12" fill="#00FF9D" font-weight="bold">Raw Socket Ring Buffer</text>
+    <text x="330" y="63" font-size="10" fill="#8b949e">Zero-Copy Non-blocking Sniffer</text>
+
+    <text x="580" y="55" font-size="16" fill="#00FF9D" font-weight="bold">→</text>
+
+    <rect x="615" y="25" width="200" height="50" rx="4" fill="#15202e" stroke="#1f2f42"/>
+    <text x="625" y="45" font-size="12" fill="#FFB300" font-weight="bold">Zero Process Mutation</text>
+    <text x="625" y="63" font-size="10" fill="#8b949e">100% Anti-Cheat Safe</text>
+  </g>
+
+  <!-- Arrow down -->
+  <text x="450" y="172" font-size="20" fill="#00E5FF" text-anchor="middle" font-weight="bold">↓</text>
+
+  <!-- Layer 2: Deserialization &amp; Protocol Parser -->
+  <g transform="translate(30, 185)">
+    <rect x="0" y="0" width="840" height="100" rx="6" fill="#0d141e" stroke="#00FF9D" stroke-width="1.2"/>
+    <rect x="15" y="-12" width="260" height="24" rx="4" fill="#00FF9D"/>
+    <text x="25" y="4" font-size="12" fill="#090d14" font-weight="bold">2. PROTOCOL &amp; ACTION PARSER</text>
+
+    <rect x="25" y="25" width="250" height="60" rx="4" fill="#15202e" stroke="#1f2f42"/>
+    <text x="35" y="48" font-size="12" fill="#00FF9D" font-weight="bold">Turn Telemetry Extractor</text>
+    <text x="35" y="68" font-size="10" fill="#8b949e">Sequence, PlayerID &amp; Turn Time</text>
+
+    <rect x="300" y="25" width="240" height="60" rx="4" fill="#15202e" stroke="#1f2f42"/>
+    <text x="310" y="48" font-size="12" fill="#00E5FF" font-weight="bold">Action Matrix Deserializer</text>
+    <text x="310" y="68" font-size="10" fill="#8b949e">Move, Build, Attack &amp; Queue</text>
+
+    <rect x="565" y="25" width="250" height="60" rx="4" fill="#15202e" stroke="#1f2f42"/>
+    <text x="575" y="48" font-size="12" fill="#7C4DFF" font-weight="bold">8.44 Mpps Zero-Copy Engine</text>
+    <text x="575" y="68" font-size="10" fill="#8b949e">Deterministic 118.4 ns per packet</text>
+  </g>
+
+  <!-- Arrow down split -->
+  <text x="230" y="306" font-size="20" fill="#00E5FF" text-anchor="middle" font-weight="bold">↙</text>
+  <text x="670" y="306" font-size="20" fill="#FFB300" text-anchor="middle" font-weight="bold">↘</text>
+
+  <!-- Layer 3: Left - Tactical Radar Grid -->
+  <g transform="translate(30, 320)">
+    <rect x="0" y="0" width="400" height="175" rx="6" fill="#0d141e" stroke="#00E5FF" stroke-width="1.2"/>
+    <rect x="15" y="-12" width="240" height="24" rx="4" fill="#00E5FF"/>
+    <text x="25" y="4" font-size="12" fill="#090d14" font-weight="bold">3A. 256x256 TACTICAL RADAR</text>
+
+    <text x="20" y="35" font-size="12" fill="#c9d1d9" font-weight="bold">グリッド: 256x256 · マップ: 闘魂 (Fighting Spirits)</text>
+    <text x="20" y="55" font-size="11" fill="#8b949e">• Continuous 2D Coordinates Normalization</text>
+    <text x="20" y="75" font-size="11" fill="#8b949e">• Unit, Base &amp; Observer Entity Classification</text>
+    <text x="20" y="95" font-size="11" fill="#8b949e">• Real-time Direct2D 60FPS HUD Overlay Output</text>
+    <text x="20" y="115" font-size="11" fill="#8b949e">• Native Vector SVG Frame Exporter</text>
+    <text x="20" y="145" font-size="11" fill="#00FF9D" font-weight="bold">STATUS: ライブ UDP 6112</text>
+  </g>
+
+  <!-- Layer 3: Right - Latency &amp; Security Sentinel -->
+  <g transform="translate(470, 320)">
+    <rect x="0" y="0" width="400" height="175" rx="6" fill="#0d141e" stroke="#FFB300" stroke-width="1.2"/>
+    <rect x="15" y="-12" width="260" height="24" rx="4" fill="#FFB300"/>
+    <text x="25" y="4" font-size="12" fill="#090d14" font-weight="bold">3B. TELEMETRY &amp; SECURITY ENGINE</text>
+
+    <text x="20" y="35" font-size="12" fill="#c9d1d9" font-weight="bold">試合テレメトリ＆ネットワーク状態</text>
+    <text x="20" y="55" font-size="11" fill="#8b949e">• RTT 遅延 &amp; ジッター Microsecond Tracking</text>
+    <text x="20" y="75" font-size="11" fill="#8b949e">• Dynamic Action APM &amp; Packet Variance Estimation</text>
+    <text x="20" y="95" font-size="11" fill="#8b949e">• Intentional Flood &amp; Drophack Attack Detection</text>
+    <text x="20" y="115" font-size="11" fill="#8b949e">• Sequence Discontinuity &amp; Desync Sentinel</text>
+    <text x="20" y="145" font-size="11" fill="#00FF9D" font-weight="bold">セキュリティ番犬: ドロップハック監視稼働中 · 0 非同期</text>
+  </g>
+</svg>

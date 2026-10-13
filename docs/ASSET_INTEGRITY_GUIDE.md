@@ -1,6 +1,6 @@
-# 🎨 Asset Integrity & Zero-External-Image Guide
+# 🎨 Asset Integrity & Visual Asset Capture Studio Guide
 
-> **규정 선언: 모든 프로젝트 자산(SVG, PNG, GIF, 다이어그램)의 100% 로컬 영구 보존 및 GitHub 푸시 전 시각적 렌더링 캡처 검증 게이트 표준**
+> **규정 선언: 모든 프로젝트 자산(SVG, PNG, GIF, 다이어그램)의 100% 로컬 영구 보존, 프로그램 실제 실행 캡처(SVG/PNG/GIF), 및 GitHub 푸시 전 시각적 렌더링 캡처 검증 게이트 표준**
 
 ---
 
@@ -26,7 +26,32 @@
 
 ---
 
-## 🛠️ 자동 검증 러너 (`scripts/verify_assets.mjs`)
+## 📸 3. 프로그램 실제 실행 시각 자산 캡처 스튜디오 (`scripts/capture_assets.mjs`)
+
+개발된 프로그램(Rust CLI 바이너리, 보안 분석 유틸리티 등)의 실제 터미널 실행 모습을 **초고화질 SVG, 고해상도 PNG, 동작 시연 GIF** 3종으로 자동 캡처하여 `docs/assets/`에 영구 보존합니다:
+
+```powershell
+# 1. 원클릭 3종 세트 일괄 자동 캡처 (프로젝트 자동 감지 -> SVG, PNG, GIF 생성)
+node scripts/capture_assets.mjs auto-capture
+
+# 2. 벡터 터미널 SVG 생성 (확대해도 절대 깨지지 않는 다크모드 창)
+node scripts/capture_assets.mjs svg --cmd "cargo run -- inspect target.exe" --out docs/assets/demo.svg
+
+# 3. 고해상도 Retina PNG 캡처 (Headless Chrome / Puppeteer 렌더링)
+node scripts/capture_assets.mjs png --cmd "cargo run -- inspect target.exe" --out docs/assets/demo.png
+
+# 4. 터미널 타이핑 & 실행 시연 애니메이션 GIF 생성 (내장 GIF89a 인코더)
+node scripts/capture_assets.mjs gif --cmd "cargo run -- inspect target.exe" --out docs/assets/demo.gif
+```
+
+### 포맷별 특징 및 산출물:
+- **SVG (`terminal_demo.svg`)**: 10~25KB 초경량 벡터 그래픽. macOS/Windows 터미널 창 프레임, ANSI 컬러 구문 강조, 100% XML 엔티티 이스케이프 보장.
+- **PNG (`terminal_demo.png`)**: Headless Chromium으로 2x DPI Retina 스크린샷 캡처. 웹 및 모바일에서 선명하게 렌더링.
+- **GIF (`demo.gif`)**: 명령어 타이핑 애니메이션 ➔ 실행 결과 스트리밍 ➔ 완료 후 정지(Pause) ➔ 무한 루프 반복. 외부 라이브러리 없이 자체 인코딩.
+
+---
+
+## 🛠️ 4. 자동 검증 러너 (`scripts/verify_assets.mjs`)
 
 본 툴킷에 포함된 `scripts/verify_assets.mjs`를 실행하면 아래 3단계 검증이 전자동으로 수행됩니다:
 
