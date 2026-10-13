@@ -8,4 +8,6 @@ pub use error::{PacketRadarError, Result};
 pub use hud::{ObjectCategory, RadarGrid, TacticalObject};
 pub use metrics::{AnomalyDetector, AnomalyType, LatencyTracker, PlayerMetrics};
 pub use protocol::{ActionType, PacketHeader, StarCraftPacket, TurnFrame, SC_PACKET_MAGIC};
-pub use sniffer::{PacketSniffer, SnifferConfig};
+pub use sniffer::{
+    CapturedPacket, PacketFilter, PacketRingBuffer, PacketSniffer, SnifferConfig, SnifferStats,
+};
